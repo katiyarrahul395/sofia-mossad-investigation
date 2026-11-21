@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d0c">
+<title>CASE #001 — The Sofia Investigation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Special+Elite&display=swap');
+:root{--bg:#090b0a;--panel:#111613;--panel2:#171d19;--line:#344139;--muted:#849087;--paper:#d8d0b8;--red:#b73531;--green:#9dbb8b;--amber:#c5a66a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#1a211c 0,#090b0a 55%);color:#d6d9d1;font-family:'IBM Plex Mono',monospace;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+.scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 50%,rgba(0,0,0,.12) 50%);background-size:100% 4px;opacity:.25;z-index:5}
+header{display:flex;justify-content:space-between;align-items:center;padding:17px 5vw;border-bottom:1px solid #273129;background:#090c0ae8;letter-spacing:2px;font-size:10px;color:#9ba79b}
+.brand{display:flex;gap:10px;align-items:center}.seal{width:28px;height:28px;border:1px solid var(--red);display:grid;place-items:center;color:var(--red);font-size:15px;transform:rotate(45deg)}.seal span{transform:rotate(-45deg)}
+.status{color:#c16b62}.status i{display:inline-block;width:6px;height:6px;background:#c34b43;border-radius:50%;margin-right:7px;box-shadow:0 0 10px #d33}
+main{width:min(900px,92vw);margin:48px auto 80px}.eyebrow{font-size:10px;color:var(--green);letter-spacing:3px;text-transform:uppercase}.hero{text-align:center;padding:36px 20px 42px;border:1px solid var(--line);background:linear-gradient(135deg,#151b17dd,#0d110fdd);position:relative;box-shadow:0 25px 80px #0008}
+.hero:before,.hero:after{content:"";position:absolute;width:22px;height:22px;border-color:var(--amber);border-style:solid}.hero:before{top:8px;left:8px;border-width:1px 0 0 1px}.hero:after{bottom:8px;right:8px;border-width:0 1px 1px 0}
+.stamp{display:inline-block;border:3px double var(--red);color:var(--red);padding:8px 15px;font-weight:700;letter-spacing:4px;transform:rotate(-7deg);font-size:12px;margin:4px 0 27px;animation:stamp .7s both}
+@keyframes stamp{0%{opacity:0;transform:scale(2) rotate(-7deg)}100%{opacity:1;transform:scale(1) rotate(-7deg)}}
+h1{font-family:'Special Elite',serif;font-size:clamp(32px,7vw,66px);font-weight:400;line-height:1.05;margin:8px 0 12px;color:#e2dfd1;letter-spacing:1px}.sub{color:#9ca69b;font-size:12px;line-height:1.8;max-width:590px;margin:0 auto}
+.meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:27px;color:#77847a;font-size:9px;letter-spacing:1px}.meta b{color:#c5c9bd;font-weight:500}
+.btn{border:1px solid #69786b;background:#1b261e;color:#dce5d6;padding:14px 22px;font:600 11px 'IBM Plex Mono';letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.2s}.btn:hover{background:#29392b;border-color:var(--green);transform:translateY(-2px);box-shadow:0 8px 25px #0008}.btn.red{border-color:#98413d;background:#351a19;color:#e9c6bd}.btn.red:hover{background:#512321}.start{margin-top:30px}
+.panel{margin-top:24px;border:1px solid var(--line);background:#101512ed;box-shadow:0 18px 50px #0007}.panel-head{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid #29342c;color:#849287;font-size:10px;letter-spacing:1.5px}.panel-body{padding:clamp(20px,5vw,42px)}
+.progress{height:3px;background:#273129;margin:0 18px 0}.progress span{display:block;height:100%;width:0;background:var(--red);transition:width .4s}
+.qnum{font-size:10px;color:var(--red);letter-spacing:3px}.question{font-family:'Special Elite',serif;font-size:clamp(24px,4.5vw,38px);line-height:1.25;color:#e2dfd1;margin:18px 0 12px}.hint{color:#859188;font-size:11px;line-height:1.7;margin-bottom:28px}.answers{display:flex;gap:12px;flex-wrap:wrap}.answers .btn{min-width:125px}.evidence{margin-top:28px;padding:13px 15px;border-left:2px solid var(--amber);background:#171c17;color:#aeb7aa;font-size:10px;line-height:1.7}.evidence strong{color:var(--amber);font-weight:500;letter-spacing:1px}.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:24px;color:#566258;font-size:9px;letter-spacing:1px}
+.hidden{display:none!important}.final{text-align:center}.final h2{font-family:'Special Elite';font-size:clamp(32px,7vw,58px);font-weight:400;color:#e3dfd0;margin:18px 0}.verdict{border:1px solid #8e3935;background:#241514;padding:22px;margin:26px 0;color:#efb3a9;font-size:clamp(16px,3.5vw,23px);letter-spacing:1px}.final p{color:#929e92;font-size:11px;line-height:1.8}
+#cliffArea{min-height:140px;position:relative}.choice{position:relative;min-width:160px}.choice.sofia{background:#321b19;border-color:#98413d;color:#f0c4ba}.choice.rahul{background:#17271c;border-color:#527858;color:#b9d8b7}.tease{min-height:22px;color:var(--amber);font-size:10px;letter-spacing:1px;margin-top:20px}
+.placeholder{border:1px dashed #465448;padding:22px;text-align:center;color:#627064;font-size:9px;letter-spacing:2px;margin-top:24px}
+@media(max-width:560px){header{padding:14px 4vw}.brand{letter-spacing:1px}.status{font-size:8px}main{margin-top:25px}.meta{gap:12px}.answers{flex-direction:column}.answers .btn{width:100%}.panel-head{font-size:8px}}
+</style>
+</head>
+<body><div class="scan"></div>
+<header><div class="brand"><div class="seal"><span>✦</span></div><span>DIRECTORATE OF UNUSUAL AFFAIRS</span></div><div class="status"><i></i>SECURE CHANNEL // ACTIVE</div></header>
+<main>
+<section class="hero" id="intro"><div class="eyebrow">Unofficial intelligence assessment division</div><div class="stamp">TOP SECRET</div><h1>THE SOFIA<br>INVESTIGATION</h1><p class="sub">A highly questionable inquiry into one civilian, several suspicious coincidences, and a frankly unreasonable number of red flags.</p><div class="meta"><span>CASE FILE <b>#001-SF</b></span><span>CLASSIFICATION <b>ABSURD</b></span><span>STATUS <b>OPEN</b></span></div><button class="btn red start" id="begin">OPEN CASE FILE →</button><div class="placeholder">[ SURVEILLANCE PHOTO SLOT — IMAGE TO BE ADDED LATER ]</div></section>
+<section class="panel hidden" id="quiz"><div class="panel-head"><span>FIELD INTERROGATION // SUBJECT: SOFIA</span><span id="counter">01 / 15</span></div><div class="progress"><span id="bar"></span></div><div class="panel-body"><div class="qnum" id="qnum">QUESTION 01</div><div class="question" id="question"></div><div class="hint" id="hint">Select the response that best reflects your observations.</div><div class="answers" id="answers"></div><div class="evidence" id="evidence"><strong>ANALYST NOTE:</strong> All responses are being treated as suspicious. This is a very scientific process.</div><div class="footer"><span>FIELD REPORT // EYES ONLY</span><span>NO RESPONSE IS INCRIMINATING</span></div></div></section>
+<section class="panel hidden" id="cliff"><div class="panel-head"><span>FINAL PSYCHOLOGICAL EVALUATION</span><span>DECISION REQUIRED</span></div><div class="panel-body"><div class="qnum">FINAL CLIFFHANGER</div><div class="question">Two people are hanging from a cliff. You can save only one. Who will you save?</div><div class="hint">Choose carefully. The agency is watching.</div><div id="cliffArea"><div class="answers"><button class="btn choice sofia" id="sofia">OPTION 1: SOFIA</button><button class="btn choice rahul" id="rahul">OPTION 2: RAHUL</button></div></div><div class="tease" id="tease"></div><div class="evidence"><strong>FIELD NOTE:</strong> This decision will be reviewed by absolutely nobody qualified.</div></div></section>
+<section class="panel hidden" id="result"><div class="panel-head"><span>ASSESSMENT COMPLETE</span><span>FILE #001-SF</span></div><div class="panel-body final"><div class="stamp">DECLASSIFIED</div><div class="eyebrow">Congratulations! // assessment completed</div><h2>CASE CLOSED.</h2><div class="verdict">SOFIA IS 100% MOSSAD AGENT.</div><p>After a thorough investigation involving height comparisons, gambling statistics, international travel preferences, and one deeply unfair cliff scenario, the agency has reached its totally-not-pre-decided conclusion.</p><p style="color:#b5a56f">DISCLAIMER: THIS IS A FICTIONAL JOKE INVESTIGATION. NO ACTUAL INTELLIGENCE AGENCY IS INVOLVED.</p><button class="btn red" id="retest">RETEST SUBJECT ↻</button><div class="placeholder">[ FINAL EVIDENCE PHOTO SLOT — IMAGE TO BE ADDED LATER ]</div></div></section>
+<div class="footer"><span>DIRECTORATE OF UNUSUAL AFFAIRS</span><span>IF FOUND, PRETEND YOU DIDN'T.</span></div>
+</main>
+<script>
+const questions=[
+["Is Sofia a 10/10?","A perfect score may indicate advanced cover training."],
+["Is she taller than Keith?","Height advantage recorded. Potential operational benefit."],
+["Does she have suspiciously good taste in men?","Taste this refined is statistically difficult to explain."],
+["Does she secretly laugh at Keith's height?","Psychological warfare can begin with a simple giggle."],
+["Is Keith smarter than Sofia?","The analyst has requested that this answer be independently verified."],
+["Does she know Keith's weaknesses better than Keith himself?","Knowledge of vulnerabilities is a classic intelligence red flag."],
+["Does Sofia ever want to visit Israel?","Travel curiosity has been added to the dossier."],
+["Which country would Sofia prefer to visit?","The destination has been flagged for absolutely no sensible reason.",["NORTH KOREA","ISRAEL","INDIA"]],
+["Has she ever said something that sounds like classified information?","Loose lips sink ships. Or at least make this website more dramatic."],
+["Does Sofia gamble?","The agency has detected a suspicious relationship with probability."],
+["Has she ever made a suspiciously accurate prediction?","Predictive ability: concerning. Evidence quality: questionable."],
+["Does she know how NVIDIA stock works?","Financial literacy has somehow become a matter of national security."],
+["Is her gambling strategy more reliable than Keith's?","The bar for this comparison is buried underground."],
+["Is Sofia too beautiful to be an ordinary civilian?","The committee has declined to define 'ordinary civilian'."],
+["Should we investigate her browser history?","The analyst recommends not asking follow-up questions."]
+];
+let index=0;
+const intro=document.getElementById('intro'),quiz=document.getElementById('quiz'),cliff=document.getElementById('cliff'),result=document.getElementById('result');
+const q=document.getElementById('question'),answers=document.getElementById('answers'),hint=document.getElementById('hint'),bar=document.getElementById('bar');
+function show(el){[intro,quiz,cliff,result].forEach(x=>x.classList.add('hidden'));el.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});}
+function render(){const item=questions[index];document.getElementById('counter').textContent=String(index+1).padStart(2,'0')+' / 15';document.getElementById('qnum').textContent='QUESTION '+String(index+1).padStart(2,'0');q.textContent=item[0];hint.textContent='Select the response that best reflects your observations.';answers.innerHTML='';(item[2]||['YES','NO']).forEach((choice,i)=>{const b=document.createElement('button');b.className='btn'+(i===0?' red':'');b.textContent=choice;b.onclick=()=>next(i);answers.appendChild(b)});bar.style.width=((index+1)/15*100)+'%';}
+function next(choice){const note=questions[index][1];document.getElementById('evidence').innerHTML='<strong>ANALYST NOTE:</strong> '+note+' <span style="color:#c16b62">[ FLAG ADDED ]</span>';index++;if(index<questions.length){setTimeout(render,180)}else{setTimeout(()=>show(cliff),220)}}
+document.getElementById('begin').onclick=()=>{index=0;show(quiz);render()};
+document.getElementById('retest').onclick=()=>{index=0;show(quiz);render()};
+let dodgeCount=0, unlocked=false, moving=false;
+const sofia=document.getElementById('sofia'),rahul=document.getElementById('rahul'),tease=document.getElementById('tease'),area=document.getElementById('cliffArea');
+function dodge(){if(unlocked||moving)return;dodgeCount++;if(dodgeCount>=8){unlocked=true;sofia.style.transform='none';sofia.style.position='relative';sofia.style.left='0';sofia.style.top='0';tease.textContent='SO STUBBORN. FINE, YOU CAN CLICK NOW.';return;}const maxX=Math.max(0,area.clientWidth-sofia.offsetWidth);const maxY=65;sofia.style.position='absolute';sofia.style.left=Math.round(Math.random()*maxX)+'px';sofia.style.top=Math.round(Math.random()*maxY)+'px';tease.textContent=['SUBJECT EVADING SELECTION…','CLICK INTERCEPT FAILED.','SUSPICIOUSLY AGILE.'][dodgeCount%3];}
+sofia.addEventListener('pointerenter',dodge);sofia.addEventListener('touchstart',e=>{if(!unlocked){e.preventDefault();dodge()}},{passive:false});
+sofia.onclick=()=>{if(!unlocked){dodge();return;}if(moving)return;moving=true;sofia.disabled=true;sofia.textContent='CHOICE ACCEPTED…';tease.textContent='VERIFYING SUBJECT SELECTION…';setTimeout(()=>{sofia.textContent='OPTION 1: SOFIA';rahul.style.boxShadow='0 0 24px #70b879';rahul.style.borderColor='#9bd49d';tease.textContent='SELECTION OVERRIDDEN. RAHUL HAS BEEN SAVED.';setTimeout(()=>show(result),5000)},900)};
+rahul.onclick=()=>{if(moving)return;moving=true;rahul.textContent='OPTION 2: RAHUL ✓';rahul.style.boxShadow='0 0 24px #70b879';tease.textContent='A SURPRISINGLY REASONABLE DECISION.';setTimeout(()=>show(result),5000)};
+</script></body></html>
